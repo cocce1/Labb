@@ -2,8 +2,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.regex.MatchResult;
-import java.util.regex.Pattern;
+
 import java.util.stream.Collectors;
 
 
@@ -60,14 +59,13 @@ public class Main {
         electricCar1.makesNoise();
         //3 Skapa en lista av ord. Använd reguljära uttryck för plocka ut endast
         // de ord som innehåller 2 eller fler engelska vokaler (a, e, i, o, u, y)
-        Pattern pattern = Pattern.compile("a, e, i, o, u, y");
-        List<String> programingLanguages = List.of("Go", "C", "Ruby", "Fortran",
-                "Java", "BASIC", "Assembly", "Python", "Swift", "JS", "MatLab");
-            pattern.matcher(programingLanguages.toString()).results()
-                    .map(MatchResult::group)
-                    .forEach(System.out::println);
+        List.of("Go", "C", "Ruby", "Fortran",
+                "Java", "X86", "Python", "Swift", "JS", "MatLab")
 
-      //  [a, e, i, o, u, y] {,2}gmi
+                .stream()
+                .filter(word -> word.replaceAll("[^aeiouy]","").length()>= 2)
+                .forEach(System.out::println);
+
 
         //4. Räkna ut antalet primtal inom intervallet 0 till 500'000.
         // Dela upp intervallet på 2 eller flera trådar, som var för sig
